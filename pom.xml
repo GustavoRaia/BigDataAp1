@@ -72,6 +72,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				    <source>17</source> <!-- Versão compatível com o JDK mais antigo -->
+                	<target>17</target>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
