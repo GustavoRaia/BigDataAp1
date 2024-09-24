@@ -24,7 +24,7 @@ public class EnderecoService {
      */
     public Endereco criaEndereco(Endereco endereco) throws EnderecoException {
 
-        Optional<Endereco> optEndereco = this.enderecoRepository.findEnderecoByCep(endereco.getCEP());
+        Optional<Endereco> optEndereco = this.enderecoRepository.findEnderecoByCep(endereco.getCep());
 
         if (optEndereco.isPresent()) {
             throw new EnderecoException("Endereço com CEP informado já cadastrado");
@@ -51,7 +51,7 @@ public class EnderecoService {
         endereco.setBairro(enderecoDetails.getBairro());
         endereco.setCidade(enderecoDetails.getCidade());
         endereco.setEstado(enderecoDetails.getEstado());
-        endereco.setCEP(enderecoDetails.getCEP());
+        endereco.setCep(enderecoDetails.getCep());
 
         return enderecoRepository.save(endereco);
     }

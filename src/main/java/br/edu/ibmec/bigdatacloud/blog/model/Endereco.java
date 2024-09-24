@@ -44,7 +44,7 @@ public class Endereco {
     @Column
     @NotBlank(message = "CEP é obrigatório")
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve seguir o formato XXXXX-XXX")
-    private String CEP;
+    private String cep;
 
     // @ManyToOne
     // @JoinColumn(referencedColumnName = "id", name = "cliente_id")
