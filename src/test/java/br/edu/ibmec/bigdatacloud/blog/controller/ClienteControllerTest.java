@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.*;
 
 @AutoConfigureMockMvc
-@WebMvcTest(controllers = PostController.class)
+@WebMvcTest(controllers = ClienteController.class)
 public class ClienteControllerTest {
 
     @MockBean
