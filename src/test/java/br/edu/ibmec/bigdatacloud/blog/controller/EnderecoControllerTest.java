@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,6 +23,8 @@ import br.edu.ibmec.bigdatacloud.blog.repository.EnderecoRepository;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.*;
 
+@AutoConfigureMockMvc
+@WebMvcTest(controllers = PostController.class)
 public class EnderecoControllerTest {
 
     @MockBean
