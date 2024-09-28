@@ -1,6 +1,6 @@
 package br.edu.ibmec.bigdatacloud.blog.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -43,7 +43,7 @@ public class Cliente {
 
     // Criar validação para verificar a idade do cliente
     @Column
-    private LocalDate dataNascimento;
+    private LocalDateTime dataNascimento;
 
     @Column
     @Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}", message = "Telefone deve seguir o formato: (XX) XXXXX-XXXX")
