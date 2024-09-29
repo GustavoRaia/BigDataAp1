@@ -39,7 +39,7 @@ public class Cliente {
 
     @Column
     @NotBlank(message = "CPF é obrigatório")
-    @CPF(message = "CPF não é válido")
+    @CPF(message = "CPF inválido")
     private String cpf;
 
     // Criar validação para verificar a idade do cliente
@@ -47,7 +47,7 @@ public class Cliente {
     private LocalDate dataNascimento;
 
     @Column
-    @Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}", message = "Telefone deve seguir o formato: (XX) XXXXX-XXXX")
+    @Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}", message = "Telefone deve seguir o formato:(XX) XXXXX-XXXX")
     private String telefone;
 
     /* Relação um para muitos no banco de dados

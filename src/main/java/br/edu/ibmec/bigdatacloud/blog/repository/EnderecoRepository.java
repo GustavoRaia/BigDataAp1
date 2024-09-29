@@ -10,4 +10,5 @@ import br.edu.ibmec.bigdatacloud.blog.model.Endereco;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
     Optional<Endereco> findEnderecoByCep(String cep);
+    boolean existsByCep(String cep);
 }

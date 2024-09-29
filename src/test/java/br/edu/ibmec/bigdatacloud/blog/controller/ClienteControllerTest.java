@@ -1,6 +1,6 @@
 package br.edu.ibmec.bigdatacloud.blog.controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +50,7 @@ public class ClienteControllerTest {
     //     Cliente cliente = new Cliente();
     //     cliente.setNome("Fulano");
     //     cliente.setCpf("12345678901");
-    //     cliente.setDataNascimento(LocalDateTime.now());
+    //     cliente.setDataNascimento(LocalDate.now());
 
     //     given(this.clienteRepository.save(cliente)).willReturn(cliente);
 
@@ -70,7 +70,7 @@ public class ClienteControllerTest {
     //     Cliente cliente = new Cliente();
     //     cliente.setNome("Fulano");
     //     cliente.setCpf("12345678901");
-    //     cliente.setDataNascimento(LocalDateTime.now());
+    //     cliente.setDataNascimento(LocalDate.now());
 
     //     // Configurando Mock de Banco de Dados
     //     given(this.clienteRepository.findById((long) 1)).willReturn(Optional.of(cliente));

@@ -10,4 +10,6 @@ import br.edu.ibmec.bigdatacloud.blog.model.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findClienteByCpf(String cpf);
+    boolean existsByEmail(String email);
+    boolean existsByCpf(String cpf);
 }
