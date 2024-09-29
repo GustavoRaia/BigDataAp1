@@ -1,10 +1,11 @@
 package br.edu.ibmec.bigdatacloud.blog.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Cliente {
 
     // Criar validação para verificar a idade do cliente
     @Column
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column
     @Pattern(regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}", message = "Telefone deve seguir o formato: (XX) XXXXX-XXXX")
@@ -53,8 +54,12 @@ public class Cliente {
      * 
      * Referenciar a tabela de endereços
      */
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(referencedColumnName = "id", name = "cliente_id")
     private List<Endereco> enderecos;
+
+    public void associarEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
 
 }

@@ -1,10 +1,14 @@
 package br.edu.ibmec.bigdatacloud.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -46,8 +50,9 @@ public class Endereco {
     @Pattern(regexp = "\\d{5}-\\d{3}", message = "CEP deve seguir o formato XXXXX-XXX")
     private String cep;
 
-    // @ManyToOne
-    // @JoinColumn(referencedColumnName = "id", name = "cliente_id")
-    // private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", name = "cliente_id")
+    @JsonIgnore
+    private Cliente cliente;
 
 }

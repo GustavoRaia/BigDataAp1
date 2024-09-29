@@ -1,5 +1,6 @@
 package br.edu.ibmec.bigdatacloud.blog.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ibmec.bigdatacloud.blog.exception.EnderecoException;
 import br.edu.ibmec.bigdatacloud.blog.model.Endereco;
+import br.edu.ibmec.bigdatacloud.blog.repository.ClienteRepository;
 import br.edu.ibmec.bigdatacloud.blog.repository.EnderecoRepository;
 import jakarta.validation.Valid;
 
@@ -16,13 +18,16 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    @Autowired
+    private ClienteRepository clienteRepository;
+
     /* Método para criação de Endereco
      * 
      * Recebe como argumento o endereço a ser cadastrado
      * Verifica se o endereço já existe e o cadastra no banco de dados
      * Caso o endereço já exista, lança uma exceção
      */
-    public Endereco criaEndereco(Endereco endereco) throws EnderecoException {
+    public Endereco criaEndereco(Endereco endereco, Long clientId) throws EnderecoException {
 
         Optional<Endereco> optEndereco = this.enderecoRepository.findEnderecoByCep(endereco.getCep());
 
@@ -31,9 +36,11 @@ public class EnderecoService {
         }
 
         //INSERE NA BASE DE DADOS
-        enderecoRepository.save(endereco);
+        endereco.setCliente(clienteRepository.findById(clientId)
+                            .orElseThrow(() -> 
+                            new IllegalArgumentException("Cliente não encontrado")));
 
-        return endereco;
+        return enderecoRepository.save(endereco);
     }
 
     /* Método para alteração dos valores do Endereço
@@ -76,6 +83,14 @@ public class EnderecoService {
             return null;
 
         return Endereco.get();
+    }
+
+    /* Método para buscar todos os endereços
+     * 
+     * Retorna uma lista com todos os endereços cadastrados
+     */
+    public List<Endereco> getAllEnderecos() {
+        return enderecoRepository.findAll();
     }
 
     /* Método para Excluir um endereço
