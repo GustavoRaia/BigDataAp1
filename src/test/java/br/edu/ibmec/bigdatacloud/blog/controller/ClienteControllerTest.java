@@ -1,100 +1,109 @@
 package br.edu.ibmec.bigdatacloud.blog.controller;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
+import br.edu.ibmec.bigdatacloud.blog.model.Cliente;
+import br.edu.ibmec.bigdatacloud.blog.service.ClienteService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import br.edu.ibmec.bigdatacloud.blog.model.Cliente;
-import br.edu.ibmec.bigdatacloud.blog.repository.ClienteRepository;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import static org.hamcrest.Matchers.*;
-import static org.mockito.BDDMockito.*;
-
-@AutoConfigureMockMvc
-@WebMvcTest(controllers = ClienteController.class)
+@WebMvcTest(ClienteController.class)
 public class ClienteControllerTest {
 
-    // @MockBean
-    // private ClienteRepository clienteRepository;
+    @Autowired
+    private MockMvc mockMvc;
 
-    // @Autowired
-    // private WebApplicationContext context;
+    @MockBean
+    private ClienteService clienteService;
 
-    // @Autowired
-    // private MockMvc mvc;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-    // @Autowired
-    // private ObjectMapper mapper;
+    private Cliente cliente;
 
-    // @BeforeEach
-    // public void setUp() {
-    //     this.mvc = MockMvcBuilders.webAppContextSetup(context).build();
-    // }
+    @BeforeEach
+    public void setUp() {
+        cliente = new Cliente();
+        cliente.setId(1);
+        cliente.setNome("Fulano");
+        cliente.setCpf("674.744.940-19");
+        cliente.setEmail("fulano@exemplo.com");
+        cliente.setTelefone("(24) 93414-2342");
+        cliente.setDataNascimento(LocalDate.of(1990, 1, 1));
+    }
 
-    // @Test
-    // public void should_create_cliente() throws Exception {
-    //     Cliente cliente = new Cliente();
-    //     cliente.setNome("Fulano");
-    //     cliente.setCpf("12345678901");
-    //     cliente.setDataNascimento(LocalDate.now());
+    @Test
+    public void should_create_cliente() throws Exception {
+        when(clienteService.criaCliente(any(Cliente.class))).thenReturn(cliente);
 
-    //     given(this.clienteRepository.save(cliente)).willReturn(cliente);
+        mockMvc.perform(post("/cliente")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(cliente)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.nome").value("Fulano"));
+    }
 
-    //     this.mvc
-    //     .perform(MockMvcRequestBuilders
-    //             .post("/cliente")
-    //             .content(this.mapper.writeValueAsString(cliente))
-    //             .contentType(MediaType.APPLICATION_JSON))
-    //             .andExpect(MockMvcResultMatchers.status().isCreated())
-    //             .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(10)))
-    //             .andExpect(MockMvcResultMatchers.jsonPath("$.title", is("Teste")));
+    @Test
+    public void should_get_all_clientes() throws Exception {
+        List<Cliente> clientes = new ArrayList<>();
+        clientes.add(cliente);
 
-    // }
+        when(clienteService.getAllClientes()).thenReturn(clientes);
 
-    // @Test
-    // public void should_get_cliente() throws Exception {
-    //     Cliente cliente = new Cliente();
-    //     cliente.setNome("Fulano");
-    //     cliente.setCpf("12345678901");
-    //     cliente.setDataNascimento(LocalDate.now());
+        mockMvc.perform(get("/cliente")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].nome").value("Fulano"));
+    }
 
-    //     // Configurando Mock de Banco de Dados
-    //     given(this.clienteRepository.findById((long) 1)).willReturn(Optional.of(cliente));
+    @Test
+    public void should_get_cliente_by_id() throws Exception {
+        when(clienteService.buscaCliente(1L)).thenReturn(cliente);
 
-    //     this.mvc
-    //     .perform(MockMvcRequestBuilders
-    //             .get("/cliente/1")
-    //             .contentType(MediaType.APPLICATION_JSON))
-    //             .andExpect(MockMvcResultMatchers.status().isOk())
-    //             .andExpect(MockMvcResultMatchers.jsonPath("$.id", is(1)));
-    // }
+        mockMvc.perform(get("/cliente/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome").value("Fulano"));
+    }
 
-    // @Test
-    // public void should_get_cliente_with_not_found() throws Exception {
+    @Test
+    public void should_update_cliente() throws Exception {
+        Cliente updatedCliente = new Cliente();
+        updatedCliente.setId(1);
+        updatedCliente.setNome("Beltrano");
 
-    //     //Configurando mock de banco
-    //     given(this.clienteRepository.findById((long) 1)).willReturn(Optional.empty());
+        when(clienteService.updateCliente(eq(1L), any(Cliente.class))).thenReturn(updatedCliente);
 
-    //     this.mvc
-    //     .perform(MockMvcRequestBuilders
-    //             .get("/cliente/1")
-    //             .contentType(MediaType.APPLICATION_JSON))
-    //             .andExpect(MockMvcResultMatchers.status().isNotFound());
+        mockMvc.perform(put("/cliente/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updatedCliente)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nome").value("Beltrano"));
+    }
 
-    // }
+    @Test
+    public void should_delete_cliente() throws Exception {
+        doNothing().when(clienteService).deletaCliente(1L);
 
+        mockMvc.perform(delete("/cliente/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Cliente deletado com sucesso"));
+    }
 }

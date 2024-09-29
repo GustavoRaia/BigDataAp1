@@ -38,38 +38,44 @@ public class ClienteRepositoryTest {
     }
 
     @Test
-    void testFindById_Success() {
+    void should_pass_when_find_by_id() {
         Optional<Cliente> cliente = clienteRepository.findById(clienteId);
         assertTrue(cliente.isPresent());
         assertEquals("Derek Jeter", cliente.get().getNome());
     }
 
     @Test
-    void testExistsByEmail_True() {
+    void should_fail_when_find_by_id() {
+        Optional<Cliente> cliente = clienteRepository.findById((long) 9999); // Id Inexistente
+        assertFalse(cliente.isPresent());
+    }
+
+    @Test
+    void should_pass_when_exists_by_email() {
         boolean exists = clienteRepository.existsByEmail("derek.jeter@example.com");
         assertTrue(exists);
     }
 
     @Test
-    void testExistsByEmail_False() {
+    void should_fail_when_exists_by_email() {
         boolean exists = clienteRepository.existsByEmail("unknown@example.com");
         assertFalse(exists);
     }
 
     @Test
-    void testExistsByCpf_True() {
+    void should_pass_when_exists_by_cpf() {
         boolean exists = clienteRepository.existsByCpf("142.753.940-54");
         assertTrue(exists);
     }
 
     @Test
-    void testExistsByCpf_False() {
+    void should_fail_when_exists_by_cpf() {
         boolean exists = clienteRepository.existsByCpf("987.654.321-00");
         assertFalse(exists);
     }
 
     @Test
-    void testSaveCliente() {
+    void should_save_cliente() {
         Cliente newCliente = new Cliente();
         newCliente.setNome("Jane Doe");
         newCliente.setEmail("jane.doe@example.com");

@@ -38,33 +38,14 @@ public class EnderecoRepositoryTest {
     }
 
     @Test
-    void testSaveEndereco() {
+    void should_pass_when_find_by_id() {
         Endereco endereco = new Endereco();
         endereco.setRua("Rua Teste");
         endereco.setNumero("123");
         endereco.setBairro("Centro");
         endereco.setCidade("São Paulo");
         endereco.setEstado("SP");
-        endereco.setCep("12345-678");
-        endereco.setCliente(cliente);
-
-        Endereco savedEndereco = enderecoRepository.save(endereco);
-
-        assertNotNull(savedEndereco.getId());
-        assertEquals("Rua Teste", savedEndereco.getRua());
-        assertEquals("123", savedEndereco.getNumero());
-        assertEquals(cliente.getId(), savedEndereco.getCliente().getId());
-    }
-
-    @Test
-    void testFindById_Success() {
-        Endereco endereco = new Endereco();
-        endereco.setRua("Rua Teste");
-        endereco.setNumero("123");
-        endereco.setBairro("Centro");
-        endereco.setCidade("São Paulo");
-        endereco.setEstado("SP");
-        endereco.setCep("12345-678");
+        endereco.setCep("40720-239");
         endereco.setCliente(cliente);
         enderecoRepository.save(endereco);
 
@@ -76,9 +57,50 @@ public class EnderecoRepositoryTest {
     }
 
     @Test
-    void testFindById_NotFound() {
-        Optional<Endereco> foundEndereco = enderecoRepository.findById(999L);
+    void should_fail_when_find_by_id() {
+        Optional<Endereco> foundEndereco = enderecoRepository.findById((long) 9999);
         assertFalse(foundEndereco.isPresent());
+    }
+
+    @Test
+    void should_fail_when_exists_by_cep() {
+        boolean exists = enderecoRepository.existsByCep("12345-678");
+        assertFalse(exists);
+    }
+
+    @Test
+    void should_pass_when_exists_by_cep() {
+        Endereco endereco = new Endereco();
+        endereco.setRua("Rua Teste");
+        endereco.setNumero("123");
+        endereco.setBairro("Centro");
+        endereco.setCidade("São Paulo");
+        endereco.setEstado("SP");
+        endereco.setCep("40720-239");
+        endereco.setCliente(cliente);
+        enderecoRepository.save(endereco);
+
+        boolean exists = enderecoRepository.existsByCep(endereco.getCep());
+        assertTrue(exists);
+    }
+
+    @Test
+    void should_save_endereco() {
+        Endereco endereco = new Endereco();
+        endereco.setRua("Rua Teste");
+        endereco.setNumero("123");
+        endereco.setBairro("Centro");
+        endereco.setCidade("São Paulo");
+        endereco.setEstado("SP");
+        endereco.setCep("40720-239");
+        endereco.setCliente(cliente);
+
+        Endereco savedEndereco = enderecoRepository.save(endereco);
+
+        assertNotNull(savedEndereco.getId());
+        assertEquals("Rua Teste", savedEndereco.getRua());
+        assertEquals("123", savedEndereco.getNumero());
+        assertEquals(cliente.getId(), savedEndereco.getCliente().getId());
     }
 
 }
