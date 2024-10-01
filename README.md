@@ -12,67 +12,68 @@ Como auxílio, utilizei o site [4devs.com](https://www.4devs.com.br) para gerar 
 #### Cadastro de um Cliente
 
 - Tipo: `POST`
-- Caminho : `http://localhost:8080/cliente` 
+- Caminho : `http://localhost:8080/cliente`
 
 **Caso 1 : Cliente com 1 endereço.**
 ```json
 {
-    "nome": "Nome Teste 1",
-    "email": "teste@gmail.com",
-    "cpf": "181.135.490-48",
-    "dataNascimento": "1999-01-01",
-    "telefone": "(21) 99015-2760",
-    "enderecos": [
-        {
-            "rua": "Rua Teste 1",
-            "numero": "1231",
-            "bairro": "Bairro Teste 1",
-            "cidade": "Cidade Teste 1",
-            "estado": "PI",
-            "cep": "64011-565"
-        }
-    ]
+	"nome": "Nome Teste 1",
+	"email": "teste@gmail.com",
+	"cpf": "181.135.490-48",
+	"dataNascimento": "1999-01-01",
+	"telefone": "(21) 99015-2760",
+	"enderecos":
+	[
+	{
+		"rua": "Rua Teste 1",
+		"numero": "1231",
+		"bairro": "Bairro Teste 1",
+		"cidade": "Cidade Teste 1",
+		"estado": "PI",
+		"cep": "64011-565"
+	}
+	]
 }
 ```
 
 **Caso 2: Cliente com múltiplos endereços.**
 ```json
 {
-    "nome": "Nome Teste 2",
-    "email": "teste2@gmail.com",
-    "cpf": "233.500.120-51",
-    "dataNascimento": "1999-03-03",
-    "telefone": "(11) 99127-6139",
-    "enderecos": [
-        {
-            "rua": "Rua Teste 2",
-            "numero": "1232",
-            "bairro": "Bairro Teste 2",
-            "cidade": "Cidade Teste 2",
-            "estado": "ES",
-            "cep": "29152-271"
-        },
-        {
-            "rua": "Rua Teste 3 ",
-            "numero": "1233",
-            "bairro": "Bairro Teste 3",
-            "cidade": "Cidade Teste 3",
-            "estado": "MG",
-            "cep": "37900-193"
-        }
-    ]
+	"nome": "Nome Teste 2",
+	"email": "teste2@gmail.com",
+	"cpf": "233.500.120-51",
+	"dataNascimento": "1999-03-03",
+	"telefone": "(11) 99127-6139",
+	"enderecos": [
+	{
+		"rua": "Rua Teste 2",
+		"numero": "1232",
+		"bairro": "Bairro Teste 2",
+		"cidade": "Cidade Teste 2",
+		"estado": "ES",
+		"cep": "29152-271"
+	},
+	{
+		"rua": "Rua Teste 3 ",
+		"numero": "1233",
+		"bairro": "Bairro Teste 3",
+		"cidade": "Cidade Teste 3",
+		"estado": "MG",
+		"cep": "37900-193"
+	}
+]
 }
 ```
 
 **Caso 3: Cliente sem nenhum endereço**
 ```json
 {
-    "nome": "Nome Teste 3",
-    "email": "teste3@gmail.com",
-    "cpf": "207.493.250-20",
-    "dataNascimento": "1999-04-04",
-    "telefone": "(55) 99237-4138",
-    "enderecos": []
+	"nome": "Nome Teste 3",
+	"email": "teste3@gmail.com",
+	"cpf": "207.493.250-20",
+	"dataNascimento": "1999-04-04",
+	"telefone": "(55) 99237-4138",
+	"enderecos": []
 }
 ```
 
@@ -83,62 +84,62 @@ Como auxílio, utilizei o site [4devs.com](https://www.4devs.com.br) para gerar 
 - Retorno:
 ```json
 [
-    {
-        "id": 1,
-        "nome": "Nome Teste 1",
-        "email": "teste@gmail.com",
-        "cpf": "181.135.490-48",
-        "dataNascimento": "1999-01-01",
-        "telefone": "(21) 99015-2760",
-        "enderecos": [
-            {
-                "id": 1,
-                "rua": "Rua Teste 1",
-                "numero": "1231",
-                "bairro": "Bairro Teste 1",
-                "cidade": "Cidade Teste 1",
-                "estado": "PI",
-                "cep": "64011-565"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "nome": "Nome Teste 2",
-        "email": "teste2@gmail.com",
-        "cpf": "233.500.120-51",
-        "dataNascimento": "1999-03-03",
-        "telefone": "(11) 99127-6139",
-        "enderecos": [
-            {
-                "id": 2,
-                "rua": "Rua Teste 2",
-                "numero": "1232",
-                "bairro": "Bairro Teste 2",
-                "cidade": "Cidade Teste 2",
-                "estado": "ES",
-                "cep": "29152-271"
-            },
-            {
-                "id": 3,
-                "rua": "Rua Teste 3 ",
-                "numero": "1233",
-                "bairro": "Bairro Teste 3",
-                "cidade": "Cidade Teste 3",
-                "estado": "MG",
-                "cep": "37900-193"
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "nome": "Nome Teste 3",
-        "email": "teste3@gmail.com",
-        "cpf": "207.493.250-20",
-        "dataNascimento": "1999-04-04",
-        "telefone": "(55) 99237-4138",
-        "enderecos": []
-    }
+	{
+		"id": 1,
+		"nome": "Nome Teste 1",
+		"email": "teste@gmail.com",
+		"cpf": "181.135.490-48",
+		"dataNascimento": "1999-01-01",
+		"telefone": "(21) 99015-2760",
+		"enderecos": [
+		{
+			"id": 1,
+			"rua": "Rua Teste 1",
+			"numero": "1231",
+			"bairro": "Bairro Teste 1",
+			"cidade": "Cidade Teste 1",
+			"estado": "PI",
+			"cep": "64011-565"
+		}
+		]
+	},
+	{
+		"id": 2,
+		"nome": "Nome Teste 2",
+		"email": "teste2@gmail.com",
+		"cpf": "233.500.120-51",
+		"dataNascimento": "1999-03-03",
+		"telefone": "(11) 99127-6139",
+		"enderecos": [
+		{
+			"id": 2,
+			"rua": "Rua Teste 2",
+			"numero": "1232",
+			"bairro": "Bairro Teste 2",
+			"cidade": "Cidade Teste 2",
+			"estado": "ES",
+			"cep": "29152-271"
+		},
+		{
+			"id": 3,
+			"rua": "Rua Teste 3 ",
+			"numero": "1233",
+			"bairro": "Bairro Teste 3",
+			"cidade": "Cidade Teste 3",
+			"estado": "MG",
+			"cep": "37900-193"
+		}
+		]
+	},
+	{
+		"id": 3,
+		"nome": "Nome Teste 3",
+		"email": "teste3@gmail.com",
+		"cpf": "207.493.250-20",
+		"dataNascimento": "1999-04-04",
+		"telefone": "(55) 99237-4138",
+		"enderecos": []
+	}
 ]
 ```
 
@@ -153,21 +154,21 @@ Realiza a alteração de dados do cliente. Pelas regras de negócio só é poss�
 
 ```json
 {
-    "nome": "Nome Teste 1 Atualizado",
-    "email": "testeatualizado@gmail.com",
-    "cpf": "181.135.490-48",
-    "dataNascimento": "1999-01-01",
-    "telefone": "(21) 99842-8911",
-    "enderecos": [
-        {
-            "rua": "Rua Teste 4",
-            "numero": "12344",
-            "bairro": "Bairro Teste 4",
-            "cidade": "Cidade Teste 4",
-            "estado": "SE",
-            "cep": "49037-219"
-        }
-    ]
+	"nome": "Nome Teste 1 Atualizado",
+	"email": "testeatualizado@gmail.com",
+	"cpf": "181.135.490-48",
+	"dataNascimento": "1999-01-01",
+	"telefone": "(21) 99842-8911",
+	"enderecos": [
+	{
+		"rua": "Rua Teste 4",
+		"numero": "12344",
+		"bairro": "Bairro Teste 4",
+		"cidade": "Cidade Teste 4",
+		"estado": "SE",
+		"cep": "49037-219"
+	}
+	]
 }
 ```
 
@@ -175,12 +176,12 @@ Realiza a alteração de dados do cliente. Pelas regras de negócio só é poss�
 
 ```json
 {
-    "nome": "Nome Teste 1 Atualizado",
-    "email": "testeatualizado@gmail.com",
-    "cpf": "181.135.490-48",
-    "dataNascimento": "1999-01-01",
-    "telefone": "(21) 99842-8911",
-    "enderecos": []
+	"nome": "Nome Teste 1 Atualizado",
+	"email": "testeatualizado@gmail.com",
+	"cpf": "181.135.490-48",
+	"dataNascimento": "1999-01-01",
+	"telefone": "(21) 99842-8911",
+	"enderecos": []
 }
 ```
 #### Buscar um Cliente por ID
@@ -190,13 +191,13 @@ Realiza a alteração de dados do cliente. Pelas regras de negócio só é poss�
 - Retorno:
 ```json
 {
-    "id": 3,
-    "nome": "Nome Teste 3",
-    "email": "teste3@gmail.com",
-    "cpf": "207.493.250-20",
-    "dataNascimento": "1999-04-04",
-    "telefone": "(55) 99237-4138",
-    "enderecos": []
+	"id": 3,
+	"nome": "Nome Teste 3",
+	"email": "teste3@gmail.com",
+	"cpf": "207.493.250-20",
+	"dataNascimento": "1999-04-04",
+	"telefone": "(55) 99237-4138",
+	"enderecos": []
 }
 ```
 
@@ -207,24 +208,24 @@ Realiza a alteração de dados do cliente. Pelas regras de negócio só é poss�
 - Retorno:
 ```json
 [
-    {
-        "id": 2,
-        "rua": "Rua Teste 2",
-        "numero": "1232",
-        "bairro": "Bairro Teste 2",
-        "cidade": "Cidade Teste 2",
-        "estado": "ES",
-        "cep": "29152-271"
-    },
-    {
-        "id": 3,
-        "rua": "Rua Teste 3 ",
-        "numero": "1233",
-        "bairro": "Bairro Teste 3",
-        "cidade": "Cidade Teste 3",
-        "estado": "MG",
-        "cep": "37900-193"
-    }
+{
+	"id": 2,
+	"rua": "Rua Teste 2",
+	"numero": "1232",
+	"bairro": "Bairro Teste 2",
+	"cidade": "Cidade Teste 2",
+	"estado": "ES",
+	"cep": "29152-271"
+},
+{
+	"id": 3,
+	"rua": "Rua Teste 3 ",
+	"numero": "1233",
+	"bairro": "Bairro Teste 3",
+	"cidade": "Cidade Teste 3",
+	"estado": "MG",
+	"cep": "37900-193"
+}
 ]
 ```
 
@@ -251,13 +252,13 @@ Cliente deletado com sucesso
 
 ```json
 {
-    "rua": "Rua Teste 4",
-    "numero": "1234",
-    "bairro": "Bairro Teste 4",
-    "cidade": "Cidade Teste 4",
-    "estado": "SE",
-    "cep": "49037-219",
-    "cliente_id": 3
+	"rua": "Rua Teste 4",
+	"numero": "1234",
+	"bairro": "Bairro Teste 4",
+	"cidade": "Cidade Teste 4",
+	"estado": "SE",
+	"cep": "49037-219",
+	"cliente_id": 3
 }
 ```
 #### Buscar todos os Endereços
@@ -267,42 +268,42 @@ Cliente deletado com sucesso
 - Retorno:
 ```json
 [
-    {
-        "id": 1,
-        "rua": "Rua Teste 1",
-        "numero": "1231",
-        "bairro": "Bairro Teste 1",
-        "cidade": "Cidade Teste 1",
-        "estado": "PI",
-        "cep": "64011-565"
-    },
-    {
-        "id": 2,
-        "rua": "Rua Teste 2",
-        "numero": "1232",
-        "bairro": "Bairro Teste 2",
-        "cidade": "Cidade Teste 2",
-        "estado": "ES",
-        "cep": "29152-271"
-    },
-    {
-        "id": 3,
-        "rua": "Rua Teste 3 ",
-        "numero": "1233",
-        "bairro": "Bairro Teste 3",
-        "cidade": "Cidade Teste 3",
-        "estado": "MG",
-        "cep": "37900-193"
-    },
-    {
-        "id": 4,
-        "rua": "Rua Teste 4",
-        "numero": "12344",
-        "bairro": "Bairro Teste 4",
-        "cidade": "Cidade Teste 4",
-        "estado": "SE",
-        "cep": "49037-219"
-    }
+{
+	"id": 1,
+	"rua": "Rua Teste 1",
+	"numero": "1231",
+	"bairro": "Bairro Teste 1",
+	"cidade": "Cidade Teste 1",
+	"estado": "PI",
+	"cep": "64011-565"
+},
+{
+	"id": 2,
+	"rua": "Rua Teste 2",
+	"numero": "1232",
+	"bairro": "Bairro Teste 2",
+	"cidade": "Cidade Teste 2",
+	"estado": "ES",
+	"cep": "29152-271"
+},
+{
+	"id": 3,
+	"rua": "Rua Teste 3 ",
+	"numero": "1233",
+	"bairro": "Bairro Teste 3",
+	"cidade": "Cidade Teste 3",
+	"estado": "MG",
+	"cep": "37900-193"
+},
+{
+	"id": 4,
+	"rua": "Rua Teste 4",
+	"numero": "12344",
+	"bairro": "Bairro Teste 4",
+	"cidade": "Cidade Teste 4",
+	"estado": "SE",
+	"cep": "49037-219"
+}
 ]
 ```
 
@@ -313,12 +314,12 @@ Cliente deletado com sucesso
 
 ```json
 {
-    "rua": "Rua Teste 4 Atualizado",
-    "numero": "12344",
-    "bairro": "Bairro Teste 4 Atualizado",
-    "cidade": "Cidade Teste 4 Atualizado",
-    "estado": "MA",
-    "cep": "65044-444"
+	"rua": "Rua Teste 4 Atualizado",
+	"numero": "12344",
+	"bairro": "Bairro Teste 4 Atualizado",
+	"cidade": "Cidade Teste 4 Atualizado",
+	"estado": "MA",
+	"cep": "65044-444"
 }
 ```
 #### Exclusão de um Endereço
@@ -337,13 +338,13 @@ Endereço deletado com sucesso
 - Retorno:
 ```json
 {
-    "id": 1,
-    "rua": "Rua Teste 1",
-    "numero": "1231",
-    "bairro": "Bairro Teste 1",
-    "cidade": "Cidade Teste 1",
-    "estado": "PI",
-    "cep": "64011-565"
+	"id": 1,
+	"rua": "Rua Teste 1",
+	"numero": "1231",
+	"bairro": "Bairro Teste 1",
+	"cidade": "Cidade Teste 1",
+	"estado": "PI",
+	"cep": "64011-565"
 }
 ```
 ### <hr>
