@@ -50,8 +50,8 @@ public class ClienteController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/endereco/{idEndereco}")
-    public ResponseEntity<List<Endereco>> getEnderecosById(@PathVariable Long id, @PathVariable Long idEndereco) {
+    @GetMapping("/{id}/endereco")
+    public ResponseEntity<List<Endereco>> getEnderecosById(@PathVariable Long id) {
         Cliente cliente = clienteService.buscaCliente(id);
         return new ResponseEntity<>(cliente.getEnderecos(), HttpStatus.OK);
     }

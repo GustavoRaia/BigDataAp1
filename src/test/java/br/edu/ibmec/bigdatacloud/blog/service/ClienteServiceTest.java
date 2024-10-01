@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import br.edu.ibmec.bigdatacloud.blog.model.Cliente;
-import br.edu.ibmec.bigdatacloud.blog.model.Endereco;
+
 import br.edu.ibmec.bigdatacloud.blog.repository.ClienteRepository;
 import br.edu.ibmec.bigdatacloud.blog.repository.EnderecoRepository;
 import br.edu.ibmec.bigdatacloud.blog.exception.ClienteException;
